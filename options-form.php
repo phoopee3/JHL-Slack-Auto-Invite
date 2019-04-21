@@ -28,7 +28,7 @@
             ?>
             <input type="text" name="jhl_sai_token" id="jhl_sai_token" value="<?php echo $jhl_sai_token; ?>">
             <br>
-            <small>Get your classic token by going to this page</small>
+            <small>Get your classic token by going to <a href="https://api.slack.com" target="_blank">api.slack.com</a>, making a new application, then going to the oauth and permissions page. The api key should start with "xoxp"</small>
         </div>
     </div>
     <div>
@@ -41,7 +41,7 @@
             ?>
             <input type="text" name="jhl_sai_channel" id="jhl_sai_channel" value="<?php echo $jhl_sai_channel; ?>">
             <br>
-            <small>The channel you would like the user to join by default, get it by looking at the url.</small>
+            <small>The channel you would like the user to join by default, get it by looking at the url. For example, if you are in your #general channel, look at the url, it would be something like foo.slack.com/messages/ABCD1234E - the last part ABCD1234E is the channel value to put in above</small>
         </div>
     </div>
 
