@@ -98,7 +98,23 @@ function jhl_sai_shortcode() {
                 '<?php echo get_site_url(); ?>/wp-json/jhl-sai/v1/request-invite/',
                 { email : email },
                 function( data ) {
-                    console.log( data );
+                    // console.log( data );
+                    if ( data.success == 1 ) {
+                        if ( data.messages[0].ok == true ) {
+                            alert('You should receive an email with your invitation.');
+                            jQuery('#jhl_sai_form #jhl_sai_email').val('');
+                        } else if ( data.messages[0].ok == false ) {
+                            if ( data.messages[0].error == 'already_invited' ) {
+                                alert('This email has already been invited');
+                            } else if ( data.messages[0].error == 'already_in_team' ) {
+                                alert('That email has already accepted an invite');
+                            } else {
+                                alert('Error: ' + data.messages[0].error);
+                            }
+                        }
+                    } else {
+                        alert('There was an error, try again later');
+                    }
                 }
             );
         });
