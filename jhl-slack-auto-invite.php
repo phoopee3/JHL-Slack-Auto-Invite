@@ -51,19 +51,22 @@ function jhl_sai_options_page(  ) {
         //     wp_die('Nonce verification failed');
         // }
 
-        if (isset($_POST['jhl_sai_url'])) {
-            update_option('jhl_sai_url', $_POST['jhl_sai_url']);
-            $value = $_POST['jhl_sai_url'];
+        if ( isset( $_POST['jhl_sai_url'] ) ) {
+            $sanitized_url = esc_url_raw( $_POST['jhl_sai_url'] );
+            update_option( 'jhl_sai_url', $sanitized_url );
+            $value = $sanitized_url;
         }
 
-        if (isset($_POST['jhl_sai_token'])) {
-            update_option('jhl_sai_token', $_POST['jhl_sai_token']);
-            $value = $_POST['jhl_sai_token'];
+        if ( isset( $_POST['jhl_sai_token'] ) ) {
+            $sanitized_token = sanitize_text_field( $_POST['jhl_sai_token'] );
+            update_option( 'jhl_sai_token', $sanitized_token );
+            $value = $sanitized_token;
         }
 
-        if (isset($_POST['jhl_sai_channel'])) {
-            update_option('jhl_sai_channel', $_POST['jhl_sai_channel']);
-            $value = $_POST['jhl_sai_channel'];
+        if ( isset( $_POST['jhl_sai_channel'] ) ) {
+            $sanitized_channel = sanitize_text_field( $_POST['jhl_sai_channel'] );
+            update_option( 'jhl_sai_channel', $sanitized_channel );
+            $value = $sanitized_channel;
         }
     }
 
@@ -147,7 +150,7 @@ function jhl_sai_request_invite( $data ) {
     $jhl_sai_url     = get_option( 'jhl_sai_url', '' ) . '/api/users.admin.invite?&_x_version_ts=' . time();
     $jhl_sai_token   = get_option( 'jhl_sai_token', '' );
     $jhl_sai_channel = get_option( 'jhl_sai_channel', '' );
-    $email           = $data['email'];
+    $email           = sanitize_email( $data['email'] );
 
     $response = wp_remote_post( $jhl_sai_url, [
         'method'      => 'POST',
