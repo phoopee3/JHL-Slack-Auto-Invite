@@ -2,7 +2,7 @@
 /*
 Plugin Name: JHL Slack Auto Invite
 Description: Automatically invite someone to a slack channel
-Version: 1.0.0
+Version: 1.1.0
 Author: Jason Lawton <jason@jasonlawton.com>
 */
 
